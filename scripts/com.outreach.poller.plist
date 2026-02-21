@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.outreach.poller</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/ari/Documents/zeroclaw-outreach/scripts/poll-telegram.sh</string>
+    </array>
+
+    <!-- Run every 120 seconds (2 minutes) -->
+    <key>StartInterval</key>
+    <integer>120</integer>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>/Users/ari</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/ari/Library/Logs/outreach-poller.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/ari/Library/Logs/outreach-poller.log</string>
+
+    <!-- Start on login -->
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>

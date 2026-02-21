@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.outreach.morning</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/ari/Documents/zeroclaw-outreach/scripts/run-outreach.sh</string>
+    </array>
+
+    <!-- Daily at 9:00 AM (local time — set TZ below for Athens) -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>TZ</key>
+        <string>Europe/Athens</string>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>/Users/ari</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/ari/Library/Logs/outreach-morning.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/ari/Library/Logs/outreach-morning.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

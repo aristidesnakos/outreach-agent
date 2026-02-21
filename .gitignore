@@ -1,0 +1,29 @@
+# Secrets
+.env
+config.toml
+workspace/operational-config.md
+
+# SQLite databases
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# ZeroClaw runtime
+daemon_state.json
+
+# Lead data (PII)
+workspace/memory/aus-con-leads.csv
+workspace/memory/lead-details.txt
+workspace/memory/lead-index.txt
+
+# Draft state
+workspace/state.json
+workspace/telegram-offset.txt
+workspace/drafts/
+
+# Edits (contains email content)
+workspace/edits/
+
+# OS
+.DS_Store
