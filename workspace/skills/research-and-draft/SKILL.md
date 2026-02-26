@@ -13,7 +13,7 @@ For each lead with status "new", research their company and draft a personalized
 2. If the lead has a website field, use browser to visit it. Look for recent projects, news, services.
 3. If browser fails or no website, use web_search for "[company] [location]".
 4. Record: what the company does (1 sentence), one specific detail, how it connects to Ari's services.
-5. If research yields nothing usable, you may still draft from headline/summary if they are detailed. Only skip if there is truly nothing to reference. If skipping, set memory status to "skipped_no_info" and report to Telegram.
+5. If research yields nothing usable, you may still draft from headline/summary if they are detailed. Only skip if there is truly nothing to reference. If skipping, set memory status to "skipped_no_info" and report to Slack.
 
 NEVER fabricate research findings. If a tool fails, report the error.
 

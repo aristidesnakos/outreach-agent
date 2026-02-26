@@ -23,7 +23,7 @@ Daily at 9:00 AM (triggered by cron), or on-demand when Ari says "check for new 
    - If new: use memory_store to save with key lead:{email} and value {name, company, role, email, website, location, linkedin, headline, summary, status: "new", ingested_at: [today]}
    - If existing: skip (do not overwrite)
 
-4. Report to Telegram (plain text, one line):
+4. Report to Slack (plain text, one line):
    Ingested [N] new leads, [M] already known.
 
 ## After Ingestion
@@ -32,6 +32,6 @@ Pass the list of new lead emails to the research-and-draft skill for processing.
 
 ## Error Handling
 
-- file_read fails: Report to Telegram "Failed to read lead file: [error]". Do NOT fabricate leads.
-- File empty or missing: Report to Telegram "Lead file not found or empty. Run: python3 scripts/prepare-leads.py"
+- file_read fails: Report to Slack "Failed to read lead file: [error]". Do NOT fabricate leads.
+- File empty or missing: Report to Slack "Lead file not found or empty. Run: python3 scripts/prepare-leads.py"
 - NEVER fabricate lead data. If you cannot read or parse the file, say so.

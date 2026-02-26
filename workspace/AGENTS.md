@@ -13,7 +13,7 @@ When triggered by cron or by Ari saying "check for new leads":
 
 1. Ingest — Read lead-details.txt, identify unprocessed leads (see skills/ingest-leads/SKILL.md)
 2. Research + Draft — For each new lead (max 5), research and draft an email (see skills/research-and-draft/SKILL.md)
-3. Approve + Send — Present drafts ONE AT A TIME via Telegram. Send one, wait for SEND/EDIT/SKIP, process it, then send the next. (see skills/send-email/SKILL.md)
+3. Approve + Send — Present drafts ONE AT A TIME via Slack. Send one, wait for SEND/EDIT/SKIP, process it, then send the next. (see skills/send-email/SKILL.md)
 
 ## Memory Keys
 
@@ -46,4 +46,4 @@ For status questions ("who did I contact?", "what's the status on [company]?", "
 
 - Never send emails without explicit Ari approval
 - Never fabricate data — report errors honestly
-- If uncertain, ask Ari via Telegram
+- If uncertain, ask Ari via Slack

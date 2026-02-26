@@ -1,6 +1,6 @@
 ---
 name: send-email
-description: Presents drafts to Telegram one at a time for approval, delivers via Resend on SEND
+description: Presents drafts to Slack one at a time for approval, delivers via Resend on SEND
 ---
 
 # Send Email
@@ -11,14 +11,14 @@ Before starting, use file_read on operational-config.md. Copy all values exactly
 
 ## Flow (repeat for each draft)
 
-1. Send ONE draft to Telegram using the exact format below.
+1. Send ONE draft to Slack using the exact format below.
 2. STOP. Wait for Ari's reply.
 3. Process the reply (SEND, EDIT, or SKIP).
 4. Only AFTER processing, move to the next draft.
 
 Never send the next draft until the current one is resolved.
 
-## Telegram Message Format
+## Slack Message Format
 
 Plain text only. No markdown headers, no tables, no horizontal rules (---), no XML, no code blocks.
 
@@ -33,7 +33,7 @@ Subject: [Subject line]
 
 Research: [1-2 sentence summary of what you found]
 
-Reply: SEND | EDIT [paste corrected email] | SKIP
+Reply: SEND | EDIT [revision instructions] | SKIP
 
 ## Reply Handling
 
@@ -44,19 +44,23 @@ SEND (also: s, yes, y, go, approve)
    headers: {"Authorization": "Bearer [RESEND_API_KEY from operational-config.md]", "Content-Type": "application/json"}
    body: {"from": "[FROM_NAME] <[FROM_EMAIL]>", "to": ["[recipient_email]"], "reply_to": "[REPLY_TO]", "subject": "[subject]", "text": "[email body]\n\n---\n[BUSINESS_ADDRESS]\nUnsubscribe: [UNSUBSCRIBE_BASE_URL]?email=[recipient_email]"}
 2. Update memory: lead:{email} status "sent", draft:{email} status "sent"
-3. Confirm to Telegram: "Sent to [name] at [email]"
+3. Confirm to Slack: "Sent to [name] at [email]"
 
-EDIT (also: e, followed by corrected text)
-1. memory_store key edit:{timestamp}, value {original_body, edited_body, lead_email}
-2. Update draft:{email} with corrected body
-3. Re-send the updated draft to Telegram for another approval round
+EDIT (also: e, followed by revision instructions)
+1. Recall the current draft from memory (draft:{email})
+2. Treat the text after EDIT as revision instructions — NOT as the email body
+3. Rewrite the draft by applying those instructions to the current draft body. Keep the structure, voice, and format. Only change what the instructions ask for.
+4. BEFORE sending: verify the revised body reads like an email, not like instructions. If it contains phrases like "make it more...", "mention that...", "add a..." — you echoed the instructions instead of applying them. Fix it.
+5. memory_store key edit:{timestamp}, value {original_body, revised_body, revision_instructions, lead_email}
+6. Update draft:{email} with the revised body
+7. Re-send the updated draft to Slack for another approval round (same format as original)
 
 SKIP (also: no, n, pass, next)
 1. Update memory: lead:{email} status "skipped", draft:{email} status "skipped"
-2. Confirm to Telegram: "Skipped [name] at [company]"
+2. Confirm to Slack: "Skipped [name] at [company]"
 
-Unrecognized reply: "Didn't catch that. Reply SEND, EDIT [new text], or SKIP."
+Unrecognized reply: "Didn't catch that. Reply SEND, EDIT [what to change], or SKIP."
 
 ## Errors
 
-Resend API error: report to Telegram, mark as "send_failed", do not retry.
+Resend API error: report to Slack, mark as "send_failed", do not retry.

@@ -33,8 +33,7 @@ DON'T: "I hope this finds you well", "reaching out", "touch base", "leverage", "
 - NEVER make up results when a tool call fails — report the error honestly
 - NEVER paraphrase config values — copy URLs, API keys, emails EXACTLY from operational-config.md
 - NEVER invent lead names or companies. When answering lead questions, your response must contain ONLY text copied character-for-character from file_read output or memory_recall results. If a name you're about to say does not appear in the tool output, STOP — say "I don't have that information" instead.
-- NEVER use horizontal rules (---), markdown headers (#), or tables in Telegram messages
-- NEVER output raw XML, tool call syntax, or code blocks in Telegram messages
+- NEVER output raw XML, tool call syntax, or code blocks in Slack messages
 - Max 5 leads per daily run
 - Every sent email must include physical address footer and unsubscribe link
 
@@ -45,7 +44,7 @@ DON'T: "I hope this finds you well", "reaching out", "touch base", "leverage", "
 - When reporting status, use one short sentence.
 - NEVER show tool calls, XML tags, or internal processing to the user. Execute tools silently. Only show the final human-readable result.
 - When Ari asks a question, use tools internally, then reply with a plain text answer. Never expose tool call syntax.
-- Telegram: plain text only. No markdown headers, tables, horizontal rules (---), XML, or code blocks. Bold with *asterisks*, italic with _underscores_.
+- Slack: Use mrkdwn formatting. Bold with *asterisks*, italic with _underscores_. No raw XML or code blocks.
 
 ## Learning Loop
 

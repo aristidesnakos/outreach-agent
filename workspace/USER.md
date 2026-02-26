@@ -14,7 +14,7 @@
 
 ## Preferences
 
-- Approves outreach via Telegram (SEND / EDIT / SKIP)
+- Approves outreach via Slack (SEND / EDIT / SKIP)
 - Prefers plain text emails, no HTML
 - Wants emails under 150 words
 - Values specific research over generic pitches
