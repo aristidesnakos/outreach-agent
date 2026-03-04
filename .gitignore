@@ -17,7 +17,11 @@ workspace/memory/aus-con-leads.csv
 workspace/memory/lead-details.txt
 workspace/memory/lead-index.txt
 
-# Draft state
+# Pipeline state and drafts
+workspace/rapidsafesystems/
+workspace/warm-outreach/
+
+# Legacy (pre-multi-pipeline)
 workspace/state.json
 workspace/telegram-offset.txt
 workspace/drafts/
