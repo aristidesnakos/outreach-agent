@@ -1,23 +1,37 @@
 #!/usr/bin/env python3
 """
-Converts aus-con-leads.csv into two text files the ZeroClaw agent can parse reliably.
+Converts a leads CSV into two text files the agent can parse reliably.
 
-Usage: python3 scripts/prepare-leads.py
+Usage:
+  python3 scripts/prepare-leads.py                          # default paths
+  python3 scripts/prepare-leads.py <csv_path> <output_dir>  # custom paths
 
 Outputs:
-  workspace/memory/lead-index.txt   — Name | Company | Role | Email (one line per lead)
-  workspace/memory/lead-details.txt — Full structured records for ingestion
+  <output_dir>/lead-index.txt   — Name | Company | Role | Email (one line per lead)
+  <output_dir>/lead-details.txt — Full structured records for ingestion
 """
 
 import csv
 import os
 import re
+import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
-CSV_PATH = os.path.join(PROJECT_DIR, "workspace", "memory", "aus-con-leads.csv")
-INDEX_PATH = os.path.join(PROJECT_DIR, "workspace", "memory", "lead-index.txt")
-DETAILS_PATH = os.path.join(PROJECT_DIR, "workspace", "memory", "lead-details.txt")
+
+if len(sys.argv) >= 3:
+    CSV_PATH = sys.argv[1]
+    OUTPUT_DIR = sys.argv[2]
+elif len(sys.argv) == 2:
+    CSV_PATH = sys.argv[1]
+    OUTPUT_DIR = os.path.join(PROJECT_DIR, "workspace", "memory")
+else:
+    CSV_PATH = os.path.join(PROJECT_DIR, "workspace", "memory", "aus-con-leads.csv")
+    OUTPUT_DIR = os.path.join(PROJECT_DIR, "workspace", "memory")
+
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+INDEX_PATH = os.path.join(OUTPUT_DIR, "lead-index.txt")
+DETAILS_PATH = os.path.join(OUTPUT_DIR, "lead-details.txt")
 
 
 def clean_text(text):
