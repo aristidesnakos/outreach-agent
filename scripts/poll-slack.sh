@@ -22,7 +22,7 @@ if [ ! -f "$ENV_FILE" ]; then
 fi
 
 load_env_var() {
-  grep "^$1=" "$ENV_FILE" | head -1 | cut -d'=' -f2- | xargs
+  grep "^$1=" "$ENV_FILE" | head -1 | cut -d'=' -f2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
 }
 
 # Export API key for Claude CLI (if set in .env, overrides Max subscription)
@@ -130,7 +130,7 @@ for draft_file in "$PROJECT_DIR"/workspace/*/drafts/*.json; do
   fi
 
   # Normalize: lowercase, first line only, trim
-  COMMAND=$(echo "$REPLY_TEXT" | head -1 | tr '[:upper:]' '[:lower:]' | xargs)
+  COMMAND=$(echo "$REPLY_TEXT" | head -1 | tr '[:upper:]' '[:lower:]' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
   # --- SEND ---
   if echo "$COMMAND" | grep -qE '^(send|s|yes|y|go|approve)$'; then
